@@ -11,7 +11,11 @@ J2M.prototype.md_to_html = function(str) {
 };
 
 J2M.prototype.jira_to_html = function(str) {
-	return marked(this.to_markdown(str));
+	return marked(this.to_markdown(
+		str
+		// Color
+		.replace(/\{color:([^]*)+\}([^]*)\{color\}/gm,'<p><span style="color:$1;">$2<\/span><\/p>')
+	));
 };
 
 J2M.prototype.to_markdown = function(str) {
